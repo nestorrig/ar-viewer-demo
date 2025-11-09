@@ -1,49 +1,10 @@
 import { models } from "./config.js";
 const modelViewer = document.querySelector("#viewer");
 const slidesContainer = document.querySelector(".slides");
-const textureSelect = document.querySelector("#textures");
+const variantSelect = document.querySelector("#variant");
+const controls = document.querySelector(".controls");
 
 let currentModel = models[0];
-
-const updateTextures = () => {
-  textureSelect.innerHTML = "";
-  currentModel.textures.forEach((texture, index) => {
-    const option = document.createElement("option");
-    option.value = texture;
-    option.textContent = `Texture ${index + 1}`;
-    textureSelect.appendChild(option);
-  });
-};
-
-const switchSrc = (element, model) => {
-  currentModel = model;
-  modelViewer.src = model.path;
-  modelViewer.iosSrc = model.usdz;
-  modelViewer.poster = model.poster;
-  const slides = document.querySelectorAll(".slide");
-  slides.forEach((el) => {
-    el.classList.remove("selected");
-  });
-  element.classList.add("selected");
-  updateTextures();
-};
-
-models.forEach((model) => {
-  const slide = document.createElement("button");
-  slide.className = "slide";
-  slide.style.backgroundImage = `url('${model.poster}')`;
-  slide.addEventListener("click", () => switchSrc(slide, model));
-  slidesContainer.appendChild(slide);
-});
-
-slidesContainer.children[0].classList.add("selected");
-switchSrc(slidesContainer.children[0], models[0]);
-
-textureSelect.addEventListener("input", async (event) => {
-  const texture = await modelViewer.createTexture(event.target.value);
-  const material = modelViewer.model.materials[0];
-  material.pbrMetallicRoughness.baseColorTexture.setTexture(texture);
-});
 
 // Handles loading the events for <model-viewer>'s slotted progress bar
 const onProgress = (event) => {
@@ -57,4 +18,46 @@ const onProgress = (event) => {
     progressBar.classList.remove("hide");
   }
 };
-modelViewer.addEventListener("progress", onProgress);
+
+const switchSrc = (element, model) => {
+  modelViewer.addEventListener("progress", onProgress);
+  currentModel = model;
+  modelViewer.poster = model.poster;
+  modelViewer.src = model.path;
+  modelViewer.iosSrc = model.usdz;
+  const slides = document.querySelectorAll(".slide");
+  slides.forEach((el) => {
+    el.classList.remove("selected");
+  });
+  element.classList.add("selected");
+  controls.classList.add("hide");
+};
+
+models.forEach((model) => {
+  const slide = document.createElement("button");
+  slide.className = "slide";
+  slide.style.backgroundImage = `url('${model.poster}')`;
+  slide.addEventListener("click", () => switchSrc(slide, model));
+  slidesContainer.appendChild(slide);
+});
+
+slidesContainer.children[0].classList.add("selected");
+switchSrc(slidesContainer.children[0], models[0]);
+
+modelViewer.addEventListener("load", () => {
+  const names = modelViewer.availableVariants;
+  if (names.length > 1) {
+    controls.classList.remove("hide");
+    variantSelect.innerHTML = "";
+    names.forEach((name) => {
+      const option = document.createElement("option");
+      option.value = name;
+      option.textContent = name;
+      variantSelect.appendChild(option);
+    });
+  }
+});
+
+variantSelect.addEventListener("input", (event) => {
+  modelViewer.variantName = event.target.value;
+});
