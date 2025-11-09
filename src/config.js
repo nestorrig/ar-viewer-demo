@@ -1,4 +1,4 @@
-const models = [
+export const models = [
   // Alpura
   {
     name: "CartLecheAlp",

@@ -1,3 +1,4 @@
+import { models } from "./config.js";
 const modelViewer = document.querySelector("#viewer");
 const slidesContainer = document.querySelector(".slides");
 const textureSelect = document.querySelector("#textures");
