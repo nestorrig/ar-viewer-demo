@@ -146,9 +146,11 @@ model-viewer>#ar-prompt>img {
   z-index: 1;
 }
 
-model-viewer[ar-status="session-started"] .footer {
+/* model-viewer[ar-status="session-started"] .footer {
   background: transparent;
-}
+  border-top: none;
+  backdrop-filter: none;
+} */
 
 .slider {
   width: 100%;
