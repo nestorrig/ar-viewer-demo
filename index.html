@@ -19,21 +19,25 @@
     <div class="progress-bar hide" slot="progress-bar">
       <div class="update-bar"></div>
     </div>
-    <button slot="ar-button" id="ar-button">
-      Velo en AR
-    </button>
+
+    <a id="link-button" class="link-button" target="_blank">Ver producto</a>
     <div id="ar-prompt">
       <img src="/img/ar_hand_prompt.png">
     </div>
-    <div class="slider">
-      <div class="slides">
+    <div class="footer">
+      <div class="slider">
+        <div class="slides">
+        </div>
       </div>
-    </div>
-    <div class="controls hide">
-      <div>
-        <p>Variante</p>
-        <select id="variant">
-        </select>
+      <div class="controls hide">
+        <div>
+          <p>Variante</p>
+          <select id="variant">
+          </select>
+        </div>
+        <button slot="ar-button" id="ar-button">
+          Velo en AR
+        </button>
       </div>
     </div>
   </model-viewer>

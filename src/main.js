@@ -3,6 +3,7 @@ const modelViewer = document.querySelector("#viewer");
 const slidesContainer = document.querySelector(".slides");
 const variantSelect = document.querySelector("#variant");
 const controls = document.querySelector(".controls");
+const linkButton = document.querySelector("#link-button");
 
 let currentModel = models[0];
 
@@ -25,6 +26,7 @@ const switchSrc = (element, model) => {
   modelViewer.poster = model.poster;
   modelViewer.src = model.path;
   modelViewer.iosSrc = model.usdz;
+  linkButton.href = model.url;
   const slides = document.querySelectorAll(".slide");
   slides.forEach((el) => {
     el.classList.remove("selected");
