@@ -34,4 +34,11 @@ export const models = [
     poster: "/models/posterBocina.webp",
     url: "https://www.youtube.com/watch?v=VGfayDKveAs&list=RDVGfayDKveAs&start_radio=1",
   },
+   // Horno
+  {
+    name: "horno",
+    path: "/models/Horno/horno.glb",
+    poster: "/models/Horno/poster.webp",
+    url: "https://www.walmart.com.mx/ip/horno-electrico-oster-de-45-l-con-tecnologia-de-conveccion/00005389115019?athbdg=L1522&from=/search",
+  },
 ];
