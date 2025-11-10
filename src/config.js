@@ -27,4 +27,11 @@ export const models = [
     poster: "/models/astronaut/poster.webp",
     url: "https://example.com/models/astronaut/Astronaut.glb",
   },
+   // Bocina
+  {
+    name: "BoomBox",
+    path: "/models/BoomBox.glb",
+    poster: "/models/posterBocina.webp",
+    url: "https://www.youtube.com/watch?v=VGfayDKveAs&list=RDVGfayDKveAs&start_radio=1",
+  },
 ];
